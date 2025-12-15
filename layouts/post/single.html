@@ -1,5 +1,5 @@
 {{ define "main" }}
-<div class="card mb-2 perma">
+<div class="card mb-2 perma h-entry">
   <div class="card-body">
     {{ if .Title }}
     <h1 class="card-title">{{ .Title }}</h1>
@@ -7,7 +7,7 @@
     <div class="mb-4">
       <p class="post-meta mb-2">
         <i class="bi bi-calendar3"></i>
-        <time class="dt-published" datetime="{{ .Date.Format " 2006-01-02 15:04:05 -0700" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+        <time class="dt-published" datetime="{{ .Date.Format " 2006-01-02 15:04:05Z07:00" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
       </p>
       {{ if .Site.Params.showReadingTime }}
       <p class="reading-time mb-2">
@@ -72,7 +72,34 @@
     <div class="single-post-content" id="my-gallery">
       {{ .Content }}
     </div>
-    
+    <!-- optional backlinks -->
+    <div class="backlinks">
+    {{ $relpermalink := .RelPermalink }}
+      {{ $pages := slice }}
+      {{- range .Site.Pages -}}
+        {{- if strings.Contains .Content $relpermalink -}}
+          {{ $pages = $pages | append . }}
+        {{- end -}}
+      {{- end -}}
+      
+      {{ with $pages }}
+    <p>Backlinks:</p>
+        <ul class="backlinks">
+            {{ range $pages }}
+            {{- if .Title -}}
+            <li>
+              <a class="p-url" href="{{ .Permalink }}">{{ .Title }}</a>
+            </li>
+            {{- else -}}
+            <li>
+              <a class="p-url" href="{{ .Permalink }}">{{ .Summary | truncate 150 }}</a>
+            </li>
+            {{- end -}}
+            {{ end }}
+          </ul>
+      {{ end }}
+    </div>
+
   </div>
 </div>
 

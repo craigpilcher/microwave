@@ -92,7 +92,7 @@
       <div class="post-meta-container">
         <a href="{{ .Permalink }}" class="u-url">
           <span class="post-meta">
-            <time class="dt-published" datetime="{{ .Date.Format " 2006-01-02 15:04:05 -0700" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+            <time class="dt-published" datetime="{{ .Date.Format " 2006-01-02 15:04:05Z07:00" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
           </span>
         </a>
         {{ if .Site.Params.showCrossposts }}

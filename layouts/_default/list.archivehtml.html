@@ -27,7 +27,7 @@
       <h3 class="mb-1 text-center" id="{{ $year }}">{{ $year }}</h3>
       <ul class="sessions list-unstyled mb-4">
     {{ end }}
-    <li class="timeline-line">
+    <li class="timeline-line h-entry">
       <div class="time">
         <a href="{{ .Permalink }}" class="u-url">
           <time class="dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05-0700" }}">{{ .Date.Format "Jan 2, 2006" }}</time>

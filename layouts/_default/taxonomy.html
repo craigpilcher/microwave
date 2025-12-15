@@ -20,7 +20,7 @@
           <img src="{{ index .Params.images 0 }}" class="card-img-top w-100" alt="...">
         </div>
         {{ end }}
-        <div class="card-body">
+        <div class="card-body h-entry">
           {{- if .Site.Params.categoriesOnPosts -}}
           {{ if isset .Params "categories" }}
             {{ if ne (len .Params.categories) 0 }}
@@ -53,6 +53,11 @@
               {{ if .Params.bluesky }}
                 <a class="icon-link no-under" {{ printf "href=%q" .Params.bluesky.link | safeHTMLAttr }} target="_blank">
                   <i class="bi bi-bluesky"></i>
+                </a>
+              {{ end }}
+              {{ if .Params.mastodon }}
+                <a {{ printf "href=%q" (printf "https://%s/@%s/%s" .Params.mastodon.hostname .Params.mastodon.username (string .Params.mastodon.id)) | safeHTMLAttr }} target="_blank" class="icon-link no-under">
+                  <i class="bi bi-mastodon"></i>
                 </a>
               {{ end }}
               {{ if .Params.pixelfed }}

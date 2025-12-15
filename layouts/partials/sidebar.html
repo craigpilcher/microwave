@@ -33,4 +33,10 @@
     </li>
     {{ end }}
 </div>
+{{ if templates.Exists "partials/custom_footer.html" }}
+<div class="pt-2 no-under">
+{{ partial "custom_footer.html" . }}
+</div>
+{{ end }}
+
     

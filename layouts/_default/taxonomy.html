@@ -6,10 +6,10 @@
         {{ if .Title }}
         <h1 class="card-title" style="font-weight: 700">Posts in: {{ .Title }}</h1>
         {{ end }}
-        {{ if .Description }}
-        <div class="archive-description">{{ .Description | markdownify }}</div>
-        {{ end }}
         <div class="post-content">
+          {{ with .Content }}
+          <p class="microblog-category-intro">{{ . }}</p>
+          {{ end }}
           <p class="mb-0">Total: {{ len .Pages }} post{{ if ne (len .Pages) 1 }}s{{ end }}</p>
         </div>
       </div>
